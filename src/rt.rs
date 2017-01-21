@@ -198,7 +198,13 @@ pub extern "C" fn start(sp: &'static Stack) -> ! {
         fn main(argc: isize, argv: *const *const u8) -> isize;
     }
 
-    unsafe { ::linux::exit(main(sp.argc(), sp.argv()) as i32) }
+    let argc = sp.argc();
+    let argv = sp.argv();
+
+    unsafe {
+        ::sys::args::init(argc, argv);
+        ::process::exit(main(sp.argc(), sp.argv()) as i32)
+    }
 }
 
 // This is how the `start` lang item actually works:

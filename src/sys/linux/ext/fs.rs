@@ -2,7 +2,7 @@
 
 use fs;
 use io;
-use sys::AsInner;
+use sys_common::AsInner;
 
 #[unstable(feature = "file_offset", issue = "35918")]
 pub trait FileExt {

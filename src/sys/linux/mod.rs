@@ -1,9 +1,11 @@
+pub mod args;
+// Rust 1.14.0
+pub mod env;
 pub mod ext;
 #[cfg_attr(not(issue = "21"), allow(unused))]
 pub mod fd;
 #[cfg_attr(not(issue = "21"), allow(unused))]
 pub mod fs;
-pub mod io;
 pub mod memchr;
 // Rust 1.14.0
 pub mod os_str;

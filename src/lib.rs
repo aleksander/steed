@@ -7,6 +7,7 @@
 #![feature(compiler_builtins_lib)]
 #![feature(const_fn)]
 #![feature(core_intrinsics)]
+#![feature(drop_types_in_const)]
 #![feature(dropck_parametricity)]
 #![feature(fused)]
 #![feature(int_error_internals)]
@@ -142,6 +143,8 @@ pub mod ascii;
 // Rust 1.14.0
 pub mod collections;
 // Rust 1.14.0
+pub mod env;
+// Rust 1.14.0
 pub mod error;
 // Rust 1.14.0
 pub mod ffi;
@@ -165,9 +168,7 @@ mod ctypes;
 mod linux;
 mod panicking;
 mod sys;
-mod sys_common {
-    pub use sys::*;
-}
+mod sys_common;
 mod libc {
     pub use ctypes::*;
     pub unsafe fn strlen(cs: *const c_char) -> size_t {

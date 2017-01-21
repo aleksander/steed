@@ -14,7 +14,7 @@ use sys::errno;
 use sys::ext::ffi::OsStrExt;
 use sys::fd::FileDesc;
 use sys::time::SystemTime;
-use sys::{AsInner, FromInner};
+use sys_common::{AsInner, FromInner};
 
 pub struct File(FileDesc);
 
