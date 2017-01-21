@@ -95,43 +95,31 @@ $ ls -l zero
 
 [ci]: https://travis-ci.org/japaric/steed
 
-- ARM
+- `aarch64-unknown-linux-steed`
 
-<!-- - MIPS -->
+- `arm-unknown-linux-steedeabi`
 
-- PowerPC
+- `armv7-unknown-linux-steedeabihf`
 
-<!-- - SPARC -->
+- `i686-unknown-linux-steed`
 
-- x86
+- `mips-unknown-linux-steed`
 
-Or in terms of existing Rust targets:
+<!-- - `mips64-unknown-linux-steed` -->
 
-- `aarch64-unknown-linux-gnu`
+<!-- - `mips64el-unknown-linux-steed` -->
 
-- `arm-unknown-linux-gnueabi`
+- `mipsel-unknown-linux-steed`
 
-- `armv7-unknown-linux-gnueabihf`
+- `powerpc-unknown-linux-steed`
 
-- `i686-unknown-linux-gnu`
+- `powerpc64-unknown-linux-steed`
 
-<!-- - `mips-unknown-linux-gnu` -->
+<!-- - `powerpc64le-unknown-linux-steed` -->
 
-<!-- - `mips64-unknown-linux-gnu` -->
+<!-- - `sparc64-unknown-linux-steed` -->
 
-<!-- - `mips64el-unknown-linux-gnu` -->
-
-<!-- - `mipsel-unknown-linux-gnu` -->
-
-- `powerpc-unknown-linux-gnu`
-
-- `powerpc64-unknown-linux-gnu`
-
-<!-- - `powerpc64le-unknown-linux-gnu` -->
-
-<!-- - `sparc64-unknown-linux-gnu` -->
-
-- `x86_64-unknown-linux-gnu`
+- `x86_64-unknown-linux-steed`
 
 ## Usage
 

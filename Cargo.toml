@@ -7,10 +7,9 @@ version = "0.1.0"
 
 [dependencies.ralloc]
 optional = true
-branch = "sc"
 default-features = false
 features = ["allocator"]
-git = "https://github.com/japaric/ralloc"
+git = "https://github.com/redox-os/ralloc"
 
 [dependencies.naive_ralloc]
 optional = true
@@ -25,6 +24,3 @@ git = "https://github.com/japaric/syscall.rs"
 
 [features]
 default = ["ralloc"]
-
-[profile.dev]
-debug_assertions = false
