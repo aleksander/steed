@@ -12,7 +12,6 @@ main() {
         create
         dup
         format
-        format
         hello
         instant
         ls
