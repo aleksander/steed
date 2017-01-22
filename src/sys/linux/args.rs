@@ -22,9 +22,6 @@ use vec;
 /// One-time global initialization.
 pub unsafe fn init(argc: isize, argv: *const *const u8) { imp::init(argc, argv) }
 
-/// One-time global cleanup.
-pub unsafe fn cleanup() { imp::cleanup() }
-
 /// Returns the command line arguments
 pub fn args() -> Args {
     imp::args()
@@ -56,32 +53,30 @@ mod imp {
     use super::Args;
     use cell::UnsafeCell;
     use libc;
+    use slice;
 
-    static mut ARGS: UnsafeCell<Option<Vec<Vec<u8>>>> = UnsafeCell::new(None);
+    static mut ARGS: UnsafeCell<Option<&'static [*const u8]>> = UnsafeCell::new(None);
 
     pub unsafe fn init(argc: isize, argv: *const *const u8) {
-        let args = (0..argc).map(|i| {
-            CStr::from_ptr(*argv.offset(i) as *const libc::c_char).to_bytes().to_vec()
-        }).collect();
-
-        *ARGS.get() = Some(args);
-    }
-
-    pub unsafe fn cleanup() {
-        *ARGS.get() = None;
+        *ARGS.get() = Some(slice::from_raw_parts(argv, argc as usize));
     }
 
     pub fn args() -> Args {
         let bytes = clone().unwrap_or(Vec::new());
-        let v: Vec<OsString> = bytes.into_iter().map(|v| {
-            OsStringExt::from_vec(v)
-        }).collect();
+         let v: Vec<OsString> = bytes.into_iter().map(|v| {
+             OsStringExt::from_vec(v)
+         }).collect();
+
         Args { iter: v.into_iter(), _dont_send_or_sync_me: PhantomData }
     }
 
     fn clone() -> Option<Vec<Vec<u8>>> {
         unsafe {
-            (*ARGS.get()).as_ref().cloned()
+            (*ARGS.get()).as_ref().map(|args| {
+                args.iter().map(|arg| {
+                    CStr::from_ptr(*arg as *const libc::c_char).to_bytes().to_owned()
+                }).collect()
+            })
         }
     }
 }

@@ -7,7 +7,6 @@
 #![feature(compiler_builtins_lib)]
 #![feature(const_fn)]
 #![feature(core_intrinsics)]
-#![feature(drop_types_in_const)]
 #![feature(dropck_parametricity)]
 #![feature(fused)]
 #![feature(int_error_internals)]

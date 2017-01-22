@@ -46,10 +46,3 @@ pub trait IntoInner<Inner> {
 pub trait FromInner<Inner> {
     fn from_inner(inner: Inner) -> Self;
 }
-
-// FIXME(steed) use Once
-pub fn cleanup() {
-    unsafe {
-        ::sys::args::cleanup()
-    }
-}
