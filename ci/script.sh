@@ -24,6 +24,7 @@ main() {
         zero
     )
 
+    export QEMU_STRACE=1
     for example in ${examples[@]}; do
         cross run --target $TARGET --no-default-features --features naive_ralloc --example $example
     done
