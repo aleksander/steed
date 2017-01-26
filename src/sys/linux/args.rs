@@ -51,14 +51,13 @@ mod imp {
     use sys::ext::ffi::OsStringExt;
     use marker::PhantomData;
     use super::Args;
-    use cell::UnsafeCell;
     use libc;
     use slice;
 
-    static mut ARGS: UnsafeCell<Option<&'static [*const u8]>> = UnsafeCell::new(None);
+    static mut ARGS: Option<&'static [&'static u8]> = None;
 
     pub unsafe fn init(argc: isize, argv: *const *const u8) {
-        *ARGS.get() = Some(slice::from_raw_parts(argv, argc as usize));
+        ARGS = Some(slice::from_raw_parts(argv as *const &'static u8, argc as usize));
     }
 
     pub fn args() -> Args {
@@ -72,9 +71,9 @@ mod imp {
 
     fn clone() -> Option<Vec<Vec<u8>>> {
         unsafe {
-            (*ARGS.get()).as_ref().map(|args| {
+            ARGS.as_ref().map(|args| {
                 args.iter().map(|arg| {
-                    CStr::from_ptr(*arg as *const libc::c_char).to_bytes().to_owned()
+                    CStr::from_ptr(*arg as *const u8 as *const libc::c_char).to_bytes().to_owned()
                 }).collect()
             })
         }
