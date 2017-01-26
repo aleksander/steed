@@ -13,7 +13,7 @@ matrix:
     # - env: TARGET=x86_64-unknown-linux-steed  # this is the default job
 
     # Other architectures
-    # - env: TARGET=aarch64-unknown-linux-steed
+    - env: TARGET=aarch64-unknown-linux-steed
     # - env: TARGET=arm-unknown-linux-steedeabi
     # - env: TARGET=arm-unknown-linux-steedeabihf
     # - env: TARGET=armv7-unknown-linux-steedeabihf
